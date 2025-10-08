@@ -1,0 +1,89 @@
+.contentWrapper {
+  display: flex;
+  gap: 10px;
+  width: 60vw;
+  .contentBlock {
+    flex: 1;
+    height: 100vh;
+    background-color: #393939;
+    padding: 10px;
+
+    .table {
+      width: 100%;
+      border: none;
+      border-collapse: collapse;
+
+      th, td {
+        border: none;
+      }
+
+      tr {
+        border: none;
+      }
+
+      thead {
+        background: #B5E60014;
+        th {
+          padding: 14px 16px;
+          text-align: left;
+          font-weight: 500;
+          font-style: Medium;
+          font-size: 12px;
+          color: #ffffff;
+        }
+       
+      }
+
+      .row {
+        background: #3E3E3E;
+
+        td {
+          padding: 14px 16px;
+          font-weight: 400;
+          font-size: 12px;
+          color: #ffffff;
+
+        }
+      }
+    }
+  }
+  .filterBlock {
+    background-color: #393939;
+    width: 300px;
+    height: 100vh;
+    padding: 10px;
+
+    .headerTitle {
+      background: #B5E60014;
+      padding: 14px 16px;
+      p {
+        font-weight: 500;
+        font-style: Medium;
+        font-size: 12px;
+        color: #ffffff;
+      }
+
+    }
+
+    .actionBlock {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      input {
+        background: #3E3E3E;
+        border: none ;
+        padding: 14px 16px;
+        font-weight: 400;
+        font-size: 12px;
+        color: #ffffff;
+
+        &:focus {
+          outline: none;
+          
+        }
+
+      }
+    }
+  }
+}

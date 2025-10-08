@@ -1,0 +1,28 @@
+.navbarWrapper {
+  height: 100vh;
+  width: 200px;
+  background-color: #393939;
+  padding: 14px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+
+  .navLinks {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 7px 10px;
+      font-weight: 500;
+      font-size: 12px;
+      text-transform: uppercase;
+      
+    }
+
+    .active {
+      border-left: 2px solid #B5E600;
+    }
+  }
+}
