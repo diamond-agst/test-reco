@@ -46,6 +46,24 @@
         }
       }
     }
+
+    .paginationBlock {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+      button {
+        color: #ffffff;
+        border: 1px solid #fff;
+
+        &:disabled {
+          color: black;
+          border: 1px solid black;
+        }
+      }
+    }
+
   }
   .filterBlock {
     background-color: #393939;
@@ -85,5 +103,18 @@
 
       }
     }
+  }
+  .errorMessage {
+    position: fixed;
+    bottom: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    width: 200px;
+    height: 40px;
+    background-color: red;
+    color: #fff;
   }
 }

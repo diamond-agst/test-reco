@@ -22,10 +22,16 @@ const DiscoveryPage = () => {
   const [searchName, setSearchName] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
   const [page, setPage] = useState(0);
+  const [error, setError] = useState(false);
 
   const loadData = async (filter: Filter) => {
-    const data = await getApp(filter);
-    setData(data.appRows);
+    try {
+      const data = await getApp(filter);
+      setData(data.appRows);
+      setError(false);
+    } catch (e) {
+      setError(true);
+    }
   };
 
   useEffect(() => {
@@ -59,40 +65,43 @@ const DiscoveryPage = () => {
     const sorted = [...data].sort((a, b) => {
       const nameA = a.appName.toLowerCase();
       const nameB = b.appName.toLowerCase();
-      return nameA.localeCompare(nameB)
-    })
+      return nameA.localeCompare(nameB);
+    });
 
     setData(sorted);
-  }
+  };
 
   return (
     <div className={styles.contentWrapper}>
-      <div className={styles.contentBlock}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th onClick={sortedData} style={{cursor: "pointer"}}>Name</th>
-              <th>Category</th>
-              <th>Connection</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((row, index) => (
-              <tr key={index} className={styles.row}>
-                <td>{row.appName}</td>
-                <td>{row.category}</td>
-                <td>{row.appSources[0]}</td>
+        <div className={styles.contentBlock}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th onClick={sortedData} style={{ cursor: "pointer" }}>
+                  Name
+                </th>
+                <th>Category</th>
+                <th>Connection</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <div>
-          <Button disabled={page === 0} onClick={() => setPage((p) => p - 1)}>
-            Prev
-          </Button>
-          <Button onClick={() => setPage((p) => p + 1)}>Next</Button>
+            </thead>
+            <tbody>
+              {data.map((row, index) => (
+                <tr key={index} className={styles.row}>
+                  <td>{row.appName}</td>
+                  <td>{row.category}</td>
+                  <td>{row.appSources[0]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className={styles.paginationBlock}>
+            <Button disabled={page === 0} onClick={() => setPage((p) => p - 1)}>
+              Prev
+            </Button>
+            <Button onClick={() => setPage((p) => p + 1)}>Next</Button>
+          </div>
         </div>
-      </div>
+
       <div className={styles.filterBlock}>
         <div className={styles.headerTitle}>
           <p>Filter</p>
@@ -109,6 +118,7 @@ const DiscoveryPage = () => {
           <Button onClick={handleSearch}>Search</Button>
         </div>
       </div>
+      {error && <div className={styles.errorMessage}>Server Error</div>}
     </div>
   );
 };
